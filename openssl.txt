@@ -1,0 +1,8 @@
+openssl genrsa -des3 -out ca.key 2048
+openssl req -new -x509 -days 1826 -key ca.key -out ca.crt
+sudo openssl genrsa -out server.key 2048
+sudo openssl req -new -out server.csr -key server.key
+sudo openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 360
+
+SHA-1 Fingerprint:
+openssl x509 -noout -fingerprint -sha1 -inform pem -in server.crt

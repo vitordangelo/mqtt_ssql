@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+
+  mosquitto-alarm-module:
+    build:
+      dockerfile: ./mosquitto.dockerfile
+      context: .
+    image: alarmmodule/mosquitto
+    container_name: mosquitto-alarm-module
+    ports:
+      - "8883:8883"
+    # volumes:
+    #   - .:/home/mosquitto
+    restart: always
+    command: mosquitto -c /home/mosquitto/mosquitto.conf -v
